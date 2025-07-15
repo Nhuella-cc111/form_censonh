@@ -258,9 +258,24 @@
 document.getElementById('formacion').addEventListener('change', function() {
   document.getElementById('otroFormacion').style.display = this.value.includes('Otro') ? 'block' : 'none';
 });
-document.getElementById('talentos').addEventListener('change', function() {
-  document.getElementById('otroTalento').style.display = Array.from(this.selectedOptions).some(opt => opt.value === 'Otro') ? 'block' : 'none';
+const talentosSelect = document.getElementById('talentos');
+
+talentosSelect.addEventListener('change', function () {
+  // Limitar a 3 opciones
+  const selected = Array.from(this.selectedOptions);
+  if (selected.length > 3) {
+    alert('Solo puedes seleccionar hasta 3 talentos.');
+    selected[selected.length - 1].selected = false; // deseleccionar el último
+  }
+
+  // Mostrar input "Otro" si se eligió
+  document.getElementById('otroTalento').style.display =
+    selected.some(opt => opt.value === 'Otro') ? 'block' : 'none';
 });
+  
+//document.getElementById('talentos').addEventListener('change', function() {
+//  document.getElementById('otroTalento').style.display = Array.from(this.selectedOptions).some(opt => opt.value === 'Otro') ? 'block' : 'none';
+//});
 document.getElementById('profesiones').addEventListener('change', function() {
   document.getElementById('otraProfesion').style.display = Array.from(this.selectedOptions).some(opt => opt.value === 'Otro') ? 'block' : 'none';
 });
@@ -469,9 +484,44 @@ setupCityAutocomplete("ciudad","suggestions-ciudad","provincia","pais","lat","lo
 setupCityAutocomplete("ciudad_resi","suggestions-resi","provincia_resi","pais_resi","lat_resi","lon_resi","warning-resi");
 
 // Envío a Make
-document.getElementById('formNH').addEventListener('submit', async function(e) {
+document.getElementById('formNH').addEventListener('submit', async function (e) {
   e.preventDefault();
   const data = new FormData(this);
+
+  // Convertir talentos seleccionados a string separado por comas
+  const talentosSeleccionados = Array.from(document.getElementById('talentos').selectedOptions)
+    .map(opt => opt.value)
+    .join(', ');
+  data.set('talentos', talentosSeleccionados);
+
+  // Si hay campo "otroTalento" y está lleno, lo agregamos al final
+  const otro = document.getElementById('otroTalento').value.trim();
+  if (otro) data.set('talentos', data.get('talentos') + ', ' + otro);
+
+  // Crear objeto JSON para enviar
+  const json = Object.fromEntries(data.entries());
+
+  try {
+    const res = await fetch("https://tu-webhook-de-make", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(json)
+    });
+    if (res.ok) {
+      document.getElementById('mensaje-exito').style.display = 'block';
+      this.reset();
+    } else {
+      document.getElementById('mensaje-error').style.display = 'block';
+    }
+  } catch (err) {
+    document.getElementById('mensaje-error').style.display = 'block';
+  }
+});
+
+  
+//document.getElementById('formNH').addEventListener('submit', async function(e) {
+//  e.preventDefault();
+//  const data = new FormData(this);
   const json = Object.fromEntries(data.entries());
   try {
     const res = await fetch("https://hook.us2.make.com/6gjdmhgnwe3xb8xwabs2pflfv5qo40wj", {
