@@ -235,7 +235,7 @@
     <button type="submit">Enviar</button>
   </form>
 
-  <p id="mensaje-exito" style="color:green; text-align:center; font-weight:bold; display:none;">¡Formulario enviado con éxito!</p>
+  <p id="mensaje-exito" style="color:green; text-align:center; font-weight:bold; display:none;">💫¡Formulario enviado con éxito!</p>
   <p id="mensaje-error" style="color:red; text-align:center; font-weight:bold; display:none;">Error al enviar. Intenta nuevamente.</p>
 
 <script>
@@ -327,6 +327,23 @@ const ciudadesMundo = [
    
 ];
 
+function cleanCityName(name) {
+    return name.replace(/^(Municipio de |Municipality of |Province of |Provincia de )/i, '').trim();
+  }
+
+  function cleanProvinceName(name) {
+      return name.replace(/( Province| provincia)$/i, '').trim();
+    }
+
+  function getCountryName(countryCode) {
+    const countries = {
+      'AR': 'Argentina', 'BR': 'Brasil', 'CL': 'Chile', 'UY': 'Uruguay', 'PY': 'Paraguay',
+      'PE': 'Perú', 'BO': 'Bolivia', 'VE': 'Venezuela', 'CO': 'Colombia', 'EC': 'Ecuador',
+      'MX': 'México', 'ES': 'España', 'FR': 'Francia', 'IT': 'Italia', 'DE': 'Alemania',
+      'GB': 'Reino Unido', 'AU': 'Australia', 'US': 'Estados Unidos', 'CA': 'Canadá', 'AD': 'Andorra'
+    };
+    return countries[countryCode] || countryCode;
+  }
 function setupCityAutocomplete(inputId, suggestionsId, provId, paisId, latId, lonId, warnId) {
   const input = document.getElementById(inputId);
   const suggestionsDiv = document.getElementById(suggestionsId);
