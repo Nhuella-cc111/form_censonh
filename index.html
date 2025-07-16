@@ -117,6 +117,25 @@
   .city-container {
     position: relative;
   }
+  .radio-group {
+  margin-top: 8px;
+}
+
+.radio-item {
+  display: flex;
+  align-items: flex-start; /* Alinea arriba si hay varias líneas */
+  margin-bottom: 12px;
+}
+
+.radio-item input[type="radio"] {
+  margin-right: 10px;
+  margin-top: 4px; /* Para alinearlo con el inicio del texto */
+}
+
+.radio-item span {
+  line-height: 1.4;
+}
+
 </style>
 </head>
 <body>
@@ -173,8 +192,12 @@
     <label>Foto (JPG/PNG, máx. 1000KB):</label>
     <input type="file" name="foto" accept="image/png, image/jpeg">
 
+    <!-- Campos ocultos -->
+    <input type="hidden" id="lat" name="lat">
+    <input type="hidden" id="lon" name="lon">
+
     <!-- Formaciones -->
-    <label>Estudié o me formé en... (máximo 3)</label>
+    <label>Estudié o me formé en... (Selecciona hasta 3 opciones que mas te representen)</label>
     <div class="checkbox-group" id="grupoFormacion">
       <div class="checkbox-item"><input type="checkbox" value="Psicología">Psicología</div>
       <div class="checkbox-item"><input type="checkbox" value="Educación">Educación</div>
@@ -183,11 +206,11 @@
       <div class="checkbox-item"><input type="checkbox" value="Arte">Arte</div>
       <div class="checkbox-item"><input type="checkbox" value="Otro">Otro</div>
     </div>
-    <input type="text" id="otroFormacion" class="extra-input" placeholder="Especifica otra formación">
+    <input type="text" id="otroFormacion" class="extra-input" placeholder="Especifica otra formación" required>
     <p class="warning" id="warnFormacion">Máximo 3 opciones</p>
 
     <!-- Talentos -->
-    <label>Me apasiona... (máximo 3)</label>
+    <label>Me apasiona... (Selecciona hasta 3 opciones que mas te representen)</label>
     <div class="checkbox-group" id="grupoTalentos">
       <strong>Talentos emocionales</strong>
       <div class="checkbox-item"><input type="checkbox" value="Escuchar profundamente">Escuchar profundamente</div>
@@ -212,33 +235,85 @@
       <strong>Talentos mentales</strong>
       <div class="checkbox-item"><input type="checkbox" value="Analizar información">Analizar información</div>
       <div class="checkbox-item"><input type="checkbox" value="Organizar procesos">Organizar procesos</div>
+      <div class="checkbox-item"><input type="checkbox" value="Diseñar estrategias">Diseñar estrategias</div>
+      <div class="checkbox-item"><input type="checkbox" value="Aprender rápido">Aprender rápido</div>
+      <div class="checkbox-item"><input type="checkbox" value="Investigar">Investigar</div>
+      <div class="checkbox-item"><input type="checkbox" value="Facilitar ideas">Facilitar ideas</div>
+      <div class="checkbox-item"><input type="checkbox" value="Conectar conceptos complejos">"Conectar conceptos complejos</div>
+      <div class="checkbox-item"><input type="checkbox" value="Estructurar ideas complejas">Estructurar ideas complejas</div>
+      <div class="checkbox-item"><input type="checkbox" value="Crear contenidos pedagógicos">Crear contenidos pedagógicos</div>
+      <div class="checkbox-item"><input type="checkbox" value="Detectar patrones">Detectar patrones</div>
+      <div class="checkbox-item"><input type="checkbox" value="Pensar lógicamente">Pensar lógicamente</div>
+      <div class="checkbox-item"><input type="checkbox" value="Diseñar mapas conceptuales">Diseñar mapas conceptuales</div>
+      <div class="checkbox-item"><input type="checkbox" value="Resolver problemas">Resolver problemas</div>
+      <div class="checkbox-item"><input type="checkbox" value="Proponer mejoras">Proponer mejoras</div>
+      <div class="checkbox-item"><input type="checkbox" value="Traducir lo complejo a lo simple">Traducir lo complejo a lo simple</div>
+      <div class="checkbox-item"><input type="checkbox" value="Visualizar escenarios futuros">Visualizar escenarios futuros</div>
+      <div class="checkbox-item"><input type="checkbox" value="Crear modelos de pensamiento">Crear modelos de pensamiento</div>
+      <div class="checkbox-item"><input type="checkbox" value="Escribir con claridad">Escribir con claridad</div>
+      
       <strong>Talentos físicos</strong>
       <div class="checkbox-item"><input type="checkbox" value="Cocinar con amor">Cocinar con amor</div>
       <div class="checkbox-item"><input type="checkbox" value="Bailar">Bailar</div>
+      <div class="checkbox-item"><input type="checkbox" value="Armar estructuras">Armar estructuras</div>
+      <div class="checkbox-item"><input type="checkbox" value="Mover el cuerpo con gracia">Mover el cuerpo con gracia</div>
+      <div class="checkbox-item"><input type="checkbox" value="Cantar">Cantar</div>
+      <div class="checkbox-item"><input type="checkbox" value="Manualidades / Artesanía">"Manualidades / Artesanía</div>
+      <div class="checkbox-item"><input type="checkbox" value="Trabajar la tierra">Trabajar la tierra</div>
+      <div class="checkbox-item"><input type="checkbox" value="Cuidar espacios físicos">Cuidar espacios físicos</div>
+      <div class="checkbox-item"><input type="checkbox" value="Hacer deporte con disciplina">Hacer deporte con disciplina</div>
+      <div class="checkbox-item"><input type="checkbox" value="Trabajar con las manos">Trabajar con las manos</div>
+      <div class="checkbox-item"><input type="checkbox" value="Mover energías con el cuerpo">Mover energías con el cuerpo</div>
+      <div class="checkbox-item"><input type="checkbox" value="Crear con materiales naturales">Crear con materiales naturales</div>
+      <div class="checkbox-item"><input type="checkbox" value="Realizar masajes">Realizar masajes</div>
+      <div class="checkbox-item"><input type="checkbox" value="Cuidar el cuerpo propio y ajeno">Cuidar el cuerpo propio y ajeno</div>
+      <div class="checkbox-item"><input type="checkbox" value="Construir objetos">Construir objetos</div>
+      <div class="checkbox-item"><input type="checkbox" value="Viajar y explorar físicamente">Viajar y explorar físicamente</div>
+      <div class="checkbox-item"><input type="checkbox" value="Sostener rutinas físicas">Sostener rutinas físicas</div>
+      <div class="checkbox-item"><input type="checkbox" value="Organizar espacios materiales">Organizar espacios materiales</div>
       
       <div class="checkbox-item"><input type="checkbox" value="Otro">Otro</div>
     </div>
-    <input type="text" id="otroTalento" class="extra-input" placeholder="Especifica otro talento">
+    <input type="text" id="otroTalento" class="extra-input" placeholder="Especifica otro talento" required>
     <p class="warning" id="warnTalentos">Máximo 3 opciones</p>
 
     <!-- Profesiones -->
-    <label>He trabajado como... (máximo 3)</label>
+    <label>He trabajado como... (Selecciona hasta 3 opciones que mas te representen)</label>
     <div class="checkbox-group" id="grupoProfesiones">
       <div class="checkbox-item"><input type="checkbox" value="Docente">Docente</div>
       <div class="checkbox-item"><input type="checkbox" value="Terapeuta">Terapeuta</div>
       <div class="checkbox-item"><input type="checkbox" value="Comerciante">Comerciante</div>
+      <div class="checkbox-item"><input type="checkbox" value="Ingeniero/a">Ingeniero/a</div>
+      <div class="checkbox-item"><input type="checkbox" value="Abogado/a">Abogado/a</div>
+      <div class="checkbox-item"><input type="checkbox" value="Médico/a">Médico/a</div>
+      <div class="checkbox-item"><input type="checkbox" value="Enfermero/a">Enfermero/a</div>
+      <div class="checkbox-item"><input type="checkbox" value="Contador/a">Contador/a</div>
+      <div class="checkbox-item"><input type="checkbox" value="Arquitecto/a">Arquitecto/a</div>
+      <div class="checkbox-item"><input type="checkbox" value="Diseñador/a gráfico">Diseñador/a gráfico</div>
+      <div class="checkbox-item"><input type="checkbox" value="Programador/a">Programador/a</div>
+      <div class="checkbox-item"><input type="checkbox" value="Chef/ Cocinero/a">"Chef/ Cocinero/a</div>
+      <div class="checkbox-item"><input type="checkbox" value="Administrativo/a">Administrativo/a</div>
+      
+      
       <div class="checkbox-item"><input type="checkbox" value="Otro">Otro</div>
     </div>
-    <input type="text" id="otraProfesion" class="extra-input" placeholder="Especifica otra profesión">
+    <input type="text" id="otraProfesion" class="extra-input" placeholder="Especifica otra profesión" required>
     <p class="warning" id="warnProfesiones">Máximo 3 opciones</p>
 
     <!-- Estado -->
-    <label>En este momento me siento…</label>
-    <div>
-      <input type="radio" name="estado" value="Opcion1" required> Transitando el puente hacia la Nueva Humanidad, sanando heridas emocionales, equilibrando las energías masculina y femenina, reprogramando creencias de miedo y alineándome a la Verdad del Ser que Yo Soy.
-      <br><br>
-      <input type="radio" name="estado" value="Opcion2" required> Entregad@ a la materialización de la Nueva Humanidad y sintonizado a la Verdad que Yo Soy, después de haber transitado noches oscuras del alma para romper con los viejos paradigmas y disolver los personajes egoicos.
-    </div>
+   <label>En este momento me siento…</label>
+   <div class="radio-group">
+     <div class="radio-item">
+       <input type="radio" name="estado" value="Opcion1" required>
+       <span>Transitando el puente hacia la Nueva Humanidad, sanando heridas emocionales, equilibrando las energías masculina y femenina, reprogramando creencias de miedo y alineándome a la Verdad del Ser que Yo Soy.</span>
+     </div>
+     <div class="radio-item">
+       <input type="radio" name="estado" value="Opcion2" required>
+       <span>Entregad@ a la materialización de la Nueva Humanidad y sintonizado a la Verdad que Yo Soy, después de haber transitado noches oscuras del alma para romper con los viejos paradigmas y disolver los personajes egoicos.</span>
+     </div>
+   </div>
+
+    
 
     <!-- Acceso -->
     <label>Accedí a esta encuesta por:</label>
