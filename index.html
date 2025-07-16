@@ -596,14 +596,20 @@ setupCityAutocomplete("ciudad_resi","suggestions-resi","provincia_resi","pais_re
 
 
 // Envío a Make
+
+
 document.getElementById('formNH').addEventListener('submit', async function(e) {
   e.preventDefault();
 
   // Recoger valores
-  const getGrupo = (id) => {
-    const seleccionadas = Array.from(document.querySelectorAll(`#${id} input[type="checkbox"]:checked`)).map(cb => cb.value);
-    return seleccionadas.join(', ');
-  };
+    const getGrupo = (id) => {
+  const seleccionadas = Array.from(document.querySelectorAll(`#${id} input[type="checkbox"]:checked`))
+    .map(cb => cb.value)
+    .filter(val => val !== 'Otro'); // <-- Filtra la palabra "Otro"
+  return seleccionadas.join(', ');
+};
+  
+
 
   const data = {
     nombre: this.nombre.value,
@@ -614,6 +620,8 @@ document.getElementById('formNH').addEventListener('submit', async function(e) {
     ciudad: this.ciudad.value,
     provincia: this.provincia.value,
     pais: this.pais.value,
+    lat: document.getElementById('lat').value,      // ✅ valor del hidden
+    lon: document.getElementById('lon').value,      // ✅ valor del hidden
     ciudad_resi: this.ciudad_resi.value,
     provincia_resi: this.provincia_resi.value,
     pais_resi: this.pais_resi.value,
