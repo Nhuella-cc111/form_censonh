@@ -193,7 +193,7 @@
       <div class="checkbox-item"><input type="checkbox" value="Escuchar profundamente">Escuchar profundamente</div>
       <div class="checkbox-item"><input type="checkbox" value="Cuidar a otros">Cuidar a otros</div>
       <div class="checkbox-item"><input type="checkbox" value="Meditar">Meditar</div>
-      <div class="checkbox-item"><input type="checkbox" value=Sostener vínculos">Sostener vínculos</div>
+      <div class="checkbox-item"><input type="checkbox" value="Sostener vínculos">Sostener vínculos</div>
       <div class="checkbox-item"><input type="checkbox" value="Motivar emocionalmente">Motivar emocionalmente</div>
       <div class="checkbox-item"><input type="checkbox" value="Crear espacios de calma">Crear espacios de calma</div>
       <div class="checkbox-item"><input type="checkbox" value="Conectar con lo espiritual">"Conectar con lo espiritual</div>
@@ -202,17 +202,17 @@
       <div class="checkbox-item"><input type="checkbox" value="Empatizar con facilidad">Empatizar con facilidad</div>
       <div class="checkbox-item"><input type="checkbox" value="Contener en crisis">Contener en crisis</div>
       <div class="checkbox-item"><input type="checkbox" value="Sostener el grupo emocionalmente">Sostener el grupo emocionalmente</div>
-      <div class="checkbox-item"><input type="checkbox" value="Transmitir paz">"Transmitir paz</div>
+      <div class="checkbox-item"><input type="checkbox" value="Transmitir paz">Transmitir paz</div>
       <div class="checkbox-item"><input type="checkbox" value="Ser canal de inspiración">Ser canal de inspiración</div>
       <div class="checkbox-item"><input type="checkbox" value="Percibir lo que otros sienten">Percibir lo que otros sienten</div>
       <div class="checkbox-item"><input type="checkbox" value="Crear espacios seguros">Crear espacios seguros</div>
       <div class="checkbox-item"><input type="checkbox" value="Contener en crisis">Contener en crisis</div>
       <div class="checkbox-item"><input type="checkbox" value="Abrir el corazón">Abrir el corazón</div>
 
-      <strong>Talentos mentales</strong>strong>
+      <strong>Talentos mentales</strong>
       <div class="checkbox-item"><input type="checkbox" value="Analizar información">Analizar información</div>
       <div class="checkbox-item"><input type="checkbox" value="Organizar procesos">Organizar procesos</div>
-      <strong>Talentos físicos</strong>strong>
+      <strong>Talentos físicos</strong>
       <div class="checkbox-item"><input type="checkbox" value="Cocinar con amor">Cocinar con amor</div>
       <div class="checkbox-item"><input type="checkbox" value="Bailar">Bailar</div>
       
@@ -235,9 +235,9 @@
     <!-- Estado -->
     <label>En este momento me siento…</label>
     <div>
-      <input type="radio" name="estado" value="Opcion1" required> Transitando el puente hacia la Nueva Humanidad...
+      <input type="radio" name="estado" value="Opcion1" required> Transitando el puente hacia la Nueva Humanidad, sanando heridas emocionales, equilibrando las energías masculina y femenina, reprogramando creencias de miedo y alineándome a la Verdad del Ser que Yo Soy.
       <br><br>
-      <input type="radio" name="estado" value="Opcion2" required> Entregad@ a la materialización de la Nueva Humanidad...
+      <input type="radio" name="estado" value="Opcion2" required> Entregad@ a la materialización de la Nueva Humanidad y sintonizado a la Verdad que Yo Soy, después de haber transitado noches oscuras del alma para romper con los viejos paradigmas y disolver los personajes egoicos.
     </div>
 
     <!-- Acceso -->
@@ -246,7 +246,7 @@
       <option value="">Selecciona...</option>
       <option value="Instagram">Instagram</option>
       <option value="WhatsApp">WhatsApp</option>
-      <option value="Colaborador NH">Colaborador NH</option>
+      <option value="Nueva Humanidad">Nueva Humanidad</option>
       <option value="Colaborador CC">Colaborador CC</option>
     </select>
     <input type="text" id="nombreColaborador" class="extra-input" placeholder="Nombre del colaborador">
@@ -298,41 +298,206 @@ document.getElementById('acceso').addEventListener('change', function() {
 
 // Autocompletado ciudades
 const ciudadesMundo = [
-  {ciudad:"Buenos Aires",provincia:"CABA",pais:"Argentina",lat:-34.6118,lon:-58.3960},
+  // Argentina
+  {ciudad:"Buenos Aires",provincia:"Ciudad Autónoma de Buenos Aires",pais:"Argentina",lat:-34.6118,lon:-58.3960},
   {ciudad:"Córdoba",provincia:"Córdoba",pais:"Argentina",lat:-31.4201,lon:-64.1888},
-  {ciudad:"Rosario",provincia:"Santa Fe",pais:"Argentina",lat:-32.9442,lon:-60.6505}
-  // Puedes añadir más...
+  {ciudad: "Buenos Aires", provincia: "Ciudad Autónoma de Buenos Aires", pais: "Argentina", lat: -34.6118, lon: -58.3960},
+  {ciudad: "Córdoba", provincia: "Córdoba", pais: "Argentina", lat: -31.4201, lon: -64.1888},
+  {ciudad: "Rosario", provincia: "Santa Fe", pais: "Argentina", lat: -32.9442, lon: -60.6505},
+  {ciudad: "La Plata", provincia: "Buenos Aires", pais: "Argentina", lat: -34.9215, lon: -57.9545},
+  {ciudad: "Mar del Plata", provincia: "Buenos Aires", pais: "Argentina", lat: -38.0055, lon: -57.5426},
+  {ciudad: "Mendoza", provincia: "Mendoza", pais: "Argentina", lat: -32.8895, lon: -68.8458},
+  {ciudad: "Tucumán", provincia: "Tucumán", pais: "Argentina", lat: -26.8083, lon: -65.2176},
+  {ciudad: "Salta", provincia: "Salta", pais: "Argentina", lat: -24.7821, lon: -65.4232},
+  {ciudad: "Santa Fe", provincia: "Santa Fe", pais: "Argentina", lat: -31.6333, lon: -60.7000},
+
+      // España
+  {ciudad: "Madrid", provincia: "Comunidad de Madrid", pais: "España", lat: 40.4168, lon: -3.7038},
+  {ciudad: "Barcelona", provincia: "Cataluña", pais: "España", lat: 41.3851, lon: 2.1734},
+  {ciudad: "Valencia", provincia: "Comunidad Valenciana", pais: "España", lat: 39.4699, lon: -0.3763},
+  {ciudad: "Sevilla", provincia: "Andalucía", pais: "España", lat: 37.3891, lon: -5.9845},
+  {ciudad: "Zaragoza", provincia: "Aragón", pais: "España", lat: 41.6488, lon: -0.8891},
+  {ciudad: "Málaga", provincia: "Andalucía", pais: "España", lat: 36.7213, lon: -4.4214},
+  {ciudad: "Murcia", provincia: "Región de Murcia", pais: "España", lat: 37.9922, lon: -1.1307},
+  {ciudad: "Palma", provincia: "Islas Baleares", pais: "España", lat: 39.5696, lon: 2.6502},
+  {ciudad: "Las Palmas", provincia: "Canarias", pais: "España", lat: 28.1248, lon: -15.4300},
+  {ciudad: "Bilbao", provincia: "País Vasco", pais: "España", lat: 43.2627, lon: -2.9253},
+      // Francia
+  {ciudad: "París", provincia: "Île-de-France", pais: "Francia", lat: 48.8566, lon: 2.3522},
+  {ciudad: "Marsella", provincia: "Provenza-Alpes-Costa Azul", pais: "Francia", lat: 43.2965, lon: 5.3698},
+  {ciudad: "Lyon", provincia: "Auvernia-Ródano-Alpes", pais: "Francia", lat: 45.7640, lon: 4.8357},
+  {ciudad: "Toulouse", provincia: "Occitania", pais: "Francia", lat: 43.6047, lon: 1.4442},
+  {ciudad: "Niza", provincia: "Provenza-Alpes-Costa Azul", pais: "Francia", lat: 43.7102, lon: 7.2620},
+      // Italia
+  {ciudad: "Roma", provincia: "Lacio", pais: "Italia", lat: 41.9028, lon: 12.4964},
+  {ciudad: "Milán", provincia: "Lombardía", pais: "Italia", lat: 45.4642, lon: 9.1900},
+  {ciudad: "Nápoles", provincia: "Campania", pais: "Italia", lat: 40.8518, lon: 14.2681},
+  {ciudad: "Turín", provincia: "Piamonte", pais: "Italia", lat: 45.0703, lon: 7.6869},
+  {ciudad: "Palermo", provincia: "Sicilia", pais: "Italia", lat: 38.1157, lon: 13.3615},
+      // Reino Unido
+  {ciudad: "Londres", provincia: "Inglaterra", pais: "Reino Unido", lat: 51.5074, lon: -0.1278},
+  {ciudad: "Birmingham", provincia: "Inglaterra", pais: "Reino Unido", lat: 52.4862, lon: -1.8904},
+  {ciudad: "Manchester", provincia: "Inglaterra", pais: "Reino Unido", lat: 53.4808, lon: -2.2426},
+  {ciudad: "Glasgow", provincia: "Escocia", pais: "Reino Unido", lat: 55.8642, lon: -4.2518},
+  {ciudad: "Liverpool", provincia: "Inglaterra", pais: "Reino Unido", lat: 53.4084, lon: -2.9916},
+
+      // Alemania
+  {ciudad: "Berlín", provincia: "Berlín", pais: "Alemania", lat: 52.5200, lon: 13.4050},
+  {ciudad: "Hamburgo", provincia: "Hamburgo", pais: "Alemania", lat: 53.5511, lon: 9.9937},
+  {ciudad: "Múnich", provincia: "Baviera", pais: "Alemania", lat: 48.1351, lon: 11.5820},
+  {ciudad: "Colonia", provincia: "Renania del Norte-Westfalia", pais: "Alemania", lat: 50.9375, lon: 6.9603},
+  {ciudad: "Frankfurt", provincia: "Hesse", pais: "Alemania", lat: 50.1109, lon: 8.6821},
+      // Australia
+  {ciudad: "Sídney", provincia: "Nueva Gales del Sur", pais: "Australia", lat: -33.8688, lon: 151.2093},
+  {ciudad: "Melbourne", provincia: "Victoria", pais: "Australia", lat: -37.8136, lon: 144.9631},
+  {ciudad: "Brisbane", provincia: "Queensland", pais: "Australia", lat: -27.4698, lon: 153.0251},
+  {ciudad: "Perth", provincia: "Australia Occidental", pais: "Australia", lat: -31.9505, lon: 115.8605},
+  {ciudad: "Adelaida", provincia: "Australia Meridional", pais: "Australia", lat: -34.9285, lon: 138.6007},
+      // Otros países latinoamericanos
+  {ciudad: "São Paulo", provincia: "São Paulo", pais: "Brasil", lat: -23.5505, lon: -46.6333},
+  {ciudad: "Rio de Janeiro", provincia: "Rio de Janeiro", pais: "Brasil", lat: -22.9068, lon: -43.1729},
+  {ciudad: "Brasília", provincia: "Distrito Federal", pais: "Brasil", lat: -15.8267, lon: -47.9218},
+  {ciudad: "Santiago", provincia: "Región Metropolitana", pais: "Chile", lat: -33.4489, lon: -70.6693},
+  {ciudad: "Lima", provincia: "Lima", pais: "Perú", lat: -12.0464, lon: -77.0428},
+  {ciudad: "Bogotá", provincia: "Cundinamarca", pais: "Colombia", lat: 4.7110, lon: -74.0721},
+  {ciudad: "Ciudad de México", provincia: "Ciudad de México", pais: "México", lat: 19.4326, lon: -99.1332},
+  {ciudad: "Caracas", provincia: "Distrito Capital", pais: "Venezuela", lat: 10.4806, lon: -66.9036},
+  {ciudad: "Quito", provincia: "Pichincha", pais: "Ecuador", lat: -0.1807, lon: -78.4678},
+  {ciudad: "La Paz", provincia: "La Paz", pais: "Bolivia", lat: -16.5000, lon: -68.1193},
+  {ciudad: "Asunción", provincia: "Asunción", pais: "Paraguay", lat: -25.2637, lon: -57.5759},
+  {ciudad: "Montevideo", provincia: "Montevideo", pais: "Uruguay", lat: -34.9011, lon: -56.1645}
+   
 ];
 
-function setupCityAutocomplete(inputId, suggestionsId, provId, paisId, latId, lonId) {
+function cleanCityName(name) {
+    return name.replace(/^(Municipio de |Municipality of |Province of |Provincia de )/i, '').trim();
+  }
+
+  function cleanProvinceName(name) {
+      return name.replace(/( Province| provincia)$/i, '').trim();
+    }
+
+  function getCountryName(countryCode) {
+    const countries = {
+      'AR': 'Argentina', 'BR': 'Brasil', 'CL': 'Chile', 'UY': 'Uruguay', 'PY': 'Paraguay',
+      'PE': 'Perú', 'BO': 'Bolivia', 'VE': 'Venezuela', 'CO': 'Colombia', 'EC': 'Ecuador',
+      'MX': 'México', 'ES': 'España', 'FR': 'Francia', 'IT': 'Italia', 'DE': 'Alemania',
+      'GB': 'Reino Unido', 'AU': 'Australia', 'US': 'Estados Unidos', 'CA': 'Canadá', 'AD': 'Andorra'
+    };
+    return countries[countryCode] || countryCode;
+  }
+
+
+
+function setupCityAutocomplete(inputId, suggestionsId, provId, paisId, latId, lonId, warnId) {
   const input = document.getElementById(inputId);
   const suggestionsDiv = document.getElementById(suggestionsId);
+  let selectedFromList = false;
 
-  input.addEventListener('input', function() {
-    const query = this.value.toLowerCase();
-    if (query.length < 2) { suggestionsDiv.style.display = 'none'; return; }
-    const results = ciudadesMundo.filter(c => c.ciudad.toLowerCase().includes(query) || c.provincia.toLowerCase().includes(query));
+  function showSuggestions(cities) {
     suggestionsDiv.innerHTML = '';
-    results.forEach(city => {
+    cities.forEach(city => {
       const item = document.createElement('div');
       item.className = 'suggestion-item';
       item.textContent = `${city.ciudad}, ${city.provincia}, ${city.pais}`;
-      item.onclick = () => {
-        input.value = city.ciudad;
-        document.getElementById(provId).value = city.provincia;
-        document.getElementById(paisId).value = city.pais;
-        document.getElementById(latId).value = city.lat;
-        document.getElementById(lonId).value = city.lon;
-        suggestionsDiv.style.display = 'none';
-      };
+      item.onmousedown = (e) => { e.preventDefault(); selectCity(city); };
       suggestionsDiv.appendChild(item);
     });
-    suggestionsDiv.style.display = results.length ? 'block' : 'none';
-  });
-}
+    suggestionsDiv.style.display = cities.length > 0 ? 'block' : 'none';
+  }
 
-setupCityAutocomplete("ciudad","suggestions-ciudad","provincia","pais","lat","lon");
-setupCityAutocomplete("ciudad_resi","suggestions-resi","provincia_resi","pais_resi","lat_resi","lon_resi");
+  function selectCity(city) {
+    input.value = cleanCityName(city.ciudad);
+    const provInput = document.getElementById(provId);
+    const paisInput = document.getElementById(paisId);
+    const latInput = document.getElementById(latId);
+    const lonInput = document.getElementById(lonId);
+    const warnElement = document.getElementById(warnId);
+
+    if (provInput) provInput.value = cleanProvinceName(city.provincia);
+    if (paisInput) paisInput.value = city.pais;
+    if (latInput) latInput.value = city.lat;
+    if (lonInput) lonInput.value = city.lon;
+    if (warnElement) warnElement.innerText = '';
+
+    suggestionsDiv.style.display = 'none';
+    selectedFromList = true;
+  }
+
+  function normalizeString(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  }
+
+  input.addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    const warning = document.getElementById(warnId);
+    selectedFromList = false;
+    if (query.length < 2) { suggestionsDiv.style.display = 'none'; if (warning) warning.innerText = ''; return; }
+    const normalizedQuery = normalizeString(query);
+    
+    const localResults = ciudadesMundo.filter(city =>
+          normalizeString(city.ciudad).includes(normalizedQuery) ||
+          normalizeString(city.provincia).includes(normalizedQuery)
+        ).slice(0, 8);
+const hasResults = localResults.length > 0;
+        showSuggestions(localResults);
+
+        if (!hasResults) {
+          fetchFromAPI(query).then(apiResults => {
+            const combinedResults = [...localResults, ...apiResults]
+              .filter((city, index, self) =>
+                index === self.findIndex(c => c.ciudad === city.ciudad && c.provincia === city.provincia)
+              )
+              .slice(0, 8);
+
+            showSuggestions(combinedResults);
+          }).catch(() => {
+            showSuggestions(localResults);
+          });
+        }
+      });
+
+      async function fetchFromAPI(query) {
+        try {
+          const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(query)}&limit=5&appid=bd5e378503939ddaee76f12ad7a97608`);
+          const data = await response.json();
+
+          return data.map(place => ({
+            ciudad: cleanCityName(place.name),
+            provincia: cleanProvinceName(place.state || place.name),
+            pais: getCountryName(place.country),
+            lat: place.lat,
+            lon: place.lon
+          }));
+        } catch (error) {
+          console.log('API no disponible, usando solo base local');
+          return [];
+        }
+      }
+
+      input.addEventListener('blur', function () {
+        setTimeout(() => {
+          suggestionsDiv.style.display = 'none';
+
+          if (this.value && !selectedFromList) {
+            const warning = document.getElementById(warnId);
+            if (warning) warning.innerText = "⚠️ Debes seleccionar una ciudad de la lista de sugerencias.";
+          }
+        }, 300);
+      });
+
+      input.addEventListener('focus', function () {
+        if (this.value.length >= 2) {
+          const event = new Event('input');
+          this.dispatchEvent(event);
+        }
+      });
+    }
+
+
+setupCityAutocomplete("ciudad","suggestions-ciudad","provincia","pais","lat","lon","warning-ciudad");
+setupCityAutocomplete("ciudad_resi","suggestions-resi","provincia_resi","pais_resi","lat_resi","lon_resi","warning-resi");
+
 
 // Envío a Make
 document.getElementById('formNH').addEventListener('submit', async function(e) {
