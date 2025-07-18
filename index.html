@@ -696,7 +696,7 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
  //   else{document.getElementById('mensaje-error').style.display='block';}
 //  }catch{document.getElementById('mensaje-error').style.display='block';}
      if (res.ok) {
-       const result = await response.json();
+       const result = await res.json();
 
        if (result.error === "duplicado") {
          document.getElementById("mensaje-error").style.display = "block";
