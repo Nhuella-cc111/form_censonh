@@ -655,7 +655,7 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
       const filename=`${data.nombre}_${data.apellido}_${Date.now()}.jpg`.replace(/\\s+/g,"_");
       const formData=new FormData();formData.append('file',fotoFile);
       const upload=await fetch(`https://amjskrqaoiuabscecmji.supabase.co/storage/v1/object/fotocc/${filename}`,{
-        method:"POST",headers:{"Authorization":"Bearer TU_TOKEN"},body:formData});
+        method:"POST",headers:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtanNrcnFhb2l1YWJzY2VjbWppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA5Nzg3NDksImV4cCI6MjA2NjU1NDc0OX0.t_9h25ehDGBWGz39YmMPdeeaFyWpQcoDR0POt5Y3CXQ"},body:formData});
       if(!upload.ok){alert("Error al subir imagen");btn.disabled=false;btn.textContent='Enviar';return;}
       data.foto=`https://amjskrqaoiuabscecmji.supabase.co/storage/v1/object/public/fotocc/${filename}`;
     }
