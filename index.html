@@ -153,7 +153,7 @@
       <div class="checkbox-item"><input type="checkbox" value="Arte">Arte</div>
       <div class="checkbox-item"><input type="checkbox" value="Otro">Otro</div>
     </div>
-    <input type="text" id="otroFormacion" class="extra-input" placeholder="Especifica otra formación" required>
+    <input type="text" id="otroFormacion" class="extra-input" placeholder="Especifica otra formación">
     <p class="warning" id="warnFormacion">Máximo 3 opciones</p>
 
     <!-- Talentos -->
@@ -220,7 +220,7 @@
       
       <div class="checkbox-item"><input type="checkbox" value="Otro">Otro</div>
     </div>
-    <input type="text" id="otroTalento" class="extra-input" placeholder="Especifica otro talento" required>
+    <input type="text" id="otroTalento" class="extra-input" placeholder="Especifica otro talento">
     <p class="warning" id="warnTalentos">Máximo 3 opciones</p>
 
     <!-- Profesiones -->
@@ -243,7 +243,7 @@
       
       <div class="checkbox-item"><input type="checkbox" value="Otro">Otro</div>
     </div>
-    <input type="text" id="otraProfesion" class="extra-input" placeholder="Especifica otra profesión" required>
+    <input type="text" id="otraProfesion" class="extra-input" placeholder="Especifica otra profesión">
     <p class="warning" id="warnProfesiones">Máximo 3 opciones</p>
 
 
@@ -615,11 +615,39 @@ const ciudadesMundo=[
 setupCityAutocomplete("ciudad","suggestions-ciudad","provincia","pais","lat","lon");
 setupCityAutocomplete("ciudad_resi","suggestions-resi","provincia_resi","pais_resi","lat_resi","lon_resi");
 
+  // Controlo check Otro va ac???
+
+// Validar campos "Otro" solo si checkbox está marcado
+function validarOtros() {
+  const checks = [
+    { grupo: 'grupoFormacion', input: 'otroFormacion' },
+    { grupo: 'grupoTalentos', input: 'otroTalento' },
+    { grupo: 'grupoProfesiones', input: 'otraProfesion' }
+  ];
+
+  for (const { grupo, input } of checks) {
+    const otroMarcado = document.querySelector(`#${grupo} input[value="Otro"]`).checked;
+    const inputValue = document.getElementById(input).value.trim();
+    if (otroMarcado && inputValue === '') {
+      alert(`Debes especificar un valor en "${input.replace('otro','')}"`);
+      return false;
+    }
+  }
+  return true;
+}
+  
 // Envío con control de foto y botón animado
 document.getElementById('formNH').addEventListener('submit',async function(e){
   e.preventDefault();
   const btn=document.getElementById('btnEnviar');
   btn.disabled=true;btn.textContent='Enviando...';
+
+  // va aca???
+  if (!validarOtros()) {
+  btn.disabled = false;
+  btn.textContent = 'Enviar';
+  return;
+}
 
   const getGrupo=id=>Array.from(document.querySelectorAll(`#${id} input[type="checkbox"]:checked`))
     .map(cb=>cb.value).filter(v=>v!=='Otro').join(', ');
