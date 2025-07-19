@@ -638,16 +638,7 @@ function validarOtros() {
   return true;
 }
 
- function haySeleccion(grupoId) {
-  return document.querySelectorAll(`#${grupoId} input[type="checkbox"]:checked`).length > 0;
-}
 
- if (!haySeleccion('grupoFormacion') || !haySeleccion('grupoTalentos') || !haySeleccion('grupoProfesiones')) {
-  alert("Debes seleccionar al menos una opción en Formación, Talentos y Profesiones.");
-  btn.disabled = false;
-  btn.textContent = 'Enviar';
-  return;
-} 
  
 // Envío con control de foto y botón animado
 document.getElementById('formNH').addEventListener('submit',async function(e){
