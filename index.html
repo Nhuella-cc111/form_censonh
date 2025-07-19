@@ -706,15 +706,17 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
   };
 
   try{
-    if(fotoFile&&fotoFile.size>0){
-      if(fotoFile.size>1000000){alert("La imagen supera los 1000KB.");btn.disabled=false;btn.textContent='Enviar';return;}
-      const filename=`${data.nombre}_${data.apellido}_${Date.now()}.jpg`.replace(/\\s+/g,"_");
-      const formData=new FormData();formData.append('file',fotoFile);
-      const upload=await fetch(`https://amjskrqaoiuabscecmji.supabase.co/storage/v1/object/fotocc/${filename}`,{
-        method:"POST",headers:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtanNrcnFhb2l1YWJzY2VjbWppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA5Nzg3NDksImV4cCI6MjA2NjU1NDc0OX0.t_9h25ehDGBWGz39YmMPdeeaFyWpQcoDR0POt5Y3CXQ"},body:formData});
-      if(!upload.ok){alert("Error al subir imagen");btn.disabled=false;btn.textContent='Enviar';return;}
-      data.foto=`https://amjskrqaoiuabscecmji.supabase.co/storage/v1/object/public/fotocc/${filename}`;
-    }
+//    if(fotoFile&&fotoFile.size>0){
+//      if(fotoFile.size>1000000){alert("La imagen supera los 1000KB.");btn.disabled=false;btn.textContent='Enviar';return;}
+//      const filename=`${data.nombre}_${data.apellido}_${Date.now()}.jpg`.replace(/\\s+/g,"_");
+//      const formData=new FormData();formData.append('file',fotoFile);
+//      const upload=await fetch(`https://amjskrqaoiuabscecmji.supabase.co/storage/v1/object/fotocc/${filename}`,{
+//        method:"POST",headers:{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtanNrcnFhb2l1YWJzY2VjbWppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA5Nzg3NDksImV4cCI6MjA2NjU1NDc0OX0.t_9h25ehDGBWGz39YmMPdeeaFyWpQcoDR0POt5Y3CXQ"},body:formData});
+//      if(!upload.ok){alert("Error al subir imagen");btn.disabled=false;btn.textContent='Enviar';return;}
+//      data.foto=`https://amjskrqaoiuabscecmji.supabase.co/storage/v1/object/public/fotocc/${filename}`;
+//    }
+
+    // Sube sin foto
     const res=await fetch("https://hook.us2.make.com/6gjdmhgnwe3xb8xwabs2pflfv5qo40wj",{
       method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
     
@@ -733,29 +735,61 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
          return;
        }
 
-      if (result.estado === "ok" || Object.keys(result).length === 0) {
+      if (result.error === "duplicado") {
+        alert("Este registro ya existe.");
+        return;
+      }
+
+      if (result.estado === "ok" && result.id) {
+        // ✅ Si hay foto, subimos y notificamos a Make
+        if (fotoFile && fotoFile.size > 0) {
+          if (fotoFile.size > 1000000) {
+            alert("La imagen supera los 1000KB.");
+            return;
+          }
+
+          const filename = `${data.nombre}_${data.apellido}_${Date.now()}.jpg`.replace(/\s+/g, "_");
+          const formData = new FormData();
+          formData.append('file', fotoFile);
+
+          // Subir foto a Supabase Storage
+          const upload = await fetch(`https://amjskrqaoiuabscecmji.supabase.co/storage/v1/object/fotocc/${filename}`, {
+            method: "POST",
+            headers: {"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtanNrcnFhb2l1YWJzY2VjbWppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA5Nzg3NDksImV4cCI6MjA2NjU1NDc0OX0.t_9h25ehDGBWGz39YmMPdeeaFyWpQcoDR0POt5Y3CXQ"},
+            body: formData
+          });
+
+          if (upload.ok) {
+            const fotoUrl = `https://amjskrqaoiuabscecmji.supabase.co/storage/v1/object/public/fotocc/${filename}`;
+
+            // ✅ Segundo request a Make para actualizar URL en el registro
+            await fetch("https://hook.us2.make.com/6gjdmhgnwe3xb8xwabs2pflfv5qo40wj", {
+              method: "POST",
+              headers: {"Content-Type": "application/json"},
+              body: JSON.stringify({ id: result.id, fotoUrl })
+            });
+          }
+        }
+
+        // ✅ Éxito total
         document.getElementById("mensaje-exito").style.display = "block";
         setTimeout(() => {
           document.getElementById("mensaje-exito").style.display = "none";
-         }, 5000);
-         this.reset();
-         window.history.pushState("", document.title, window.location.pathname + window.location.search);
-       } else {
-         alert("Hubo un problema al guardar el formulario.");
-       }
-       } else {
-         throw new Error('Error en el envío');
-       }
-      } catch (error) {
-        console.error('Error:', error);
-        alert("Error al procesar el formulario.");
+        }, 5000);
+        this.reset();
+      } else {
+        alert("Hubo un problema al guardar el formulario.");
       }
- 
-  finally {
+    } else {
+      throw new Error('Error en el envío');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert("Error al procesar el formulario.");
+  } finally {
     btn.disabled = false;
     btn.textContent = 'Enviar';
   }
-
  
 });
 </script>
