@@ -659,12 +659,7 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
   btn.textContent = 'Enviar';
   return;
 }
-if (!document.getElementById('lat_resi').value || !document.getElementById('lon_resi').value) {
-  alert("Debes seleccionar una ciudad de la lista para residencia.");
-  btn.disabled = false;
-  btn.textContent = 'Enviar';
-  return;
-}
+
 
 // ✅ Validar que haya al menos una opción por grupo
  if (!haySeleccion('grupoFormacion') || !haySeleccion('grupoTalentos') || !haySeleccion('grupoProfesiones')) {
