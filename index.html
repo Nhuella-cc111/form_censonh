@@ -637,12 +637,23 @@ function validarOtros() {
   }
   return true;
 }
-  
+
+ function haySeleccion(grupoId) {
+  return document.querySelectorAll(`#${grupoId} input[type="checkbox"]:checked`).length > 0;
+}
+ 
 // Envío con control de foto y botón animado
 document.getElementById('formNH').addEventListener('submit',async function(e){
   e.preventDefault();
   const btn=document.getElementById('btnEnviar');
   btn.disabled=true;btn.textContent='Enviando...';
+
+  if (!haySeleccion('grupoFormacion') || !haySeleccion('grupoTalentos') || !haySeleccion('grupoProfesiones')) {
+  alert("Debes seleccionar al menos una opción en Formación, Talentos y Profesiones.");
+  btn.disabled = false;
+  btn.textContent = 'Enviar';
+  return;
+}
 
   // va aca???
   if (!validarOtros()) {
@@ -692,18 +703,22 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
     const res=await fetch("https://hook.us2.make.com/6gjdmhgnwe3xb8xwabs2pflfv5qo40wj",{
       method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
     
- //   if(res.ok){document.getElementById('mensaje-exito').style.display='block';this.reset();}
- //   else{document.getElementById('mensaje-error').style.display='block';}
-//  }catch{document.getElementById('mensaje-error').style.display='block';}
+
      if (res.ok) {
        const result = await res.json();
+       let result = {};
+       try {
+        result = await res.json();
+         } catch (e) {
+         console.warn("No se pudo parsear la respuesta como JSON, continuo...");
+        }
 
        if (result.error === "duplicado") {
          document.getElementById("mensaje-error").style.display = "block";
          return;
        }
 
-      if (result.estado === "ok") {
+      if (result.estado === "ok" || Object.keys(result).length === 0)) {
         document.getElementById("mensaje-exito").style.display = "block";
         setTimeout(() => {
           document.getElementById("mensaje-exito").style.display = "none";
