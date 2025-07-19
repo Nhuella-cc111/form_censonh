@@ -638,6 +638,12 @@ function validarOtros() {
   return true;
 }
 
+  function haySeleccion(grupoId) {
+  return document.querySelectorAll(`#${grupoId} input[type="checkbox"]:checked`).length > 0;
+}
+
+
+
 
  
 // Envío con control de foto y botón animado
@@ -646,9 +652,16 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
   const btn=document.getElementById('btnEnviar');
   btn.disabled=true;btn.textContent='Enviando...';
 
+// ✅ Validar que haya al menos una opción por grupo
+ if (!haySeleccion('grupoFormacion') || !haySeleccion('grupoTalentos') || !haySeleccion('grupoProfesiones')) {
+    alert("Debes seleccionar al menos una opción en Formación, Talentos y Profesiones.");
+    btn.disabled = false;
+    btn.textContent = 'Enviar';
+    return;
+  }
 
-
-  // va aca???
+  // ✅ Validar campos "Otro" si están marcados
+ 
   if (!validarOtros()) {
   btn.disabled = false;
   btn.textContent = 'Enviar';
@@ -698,7 +711,7 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
     
 
      if (res.ok) {
-       const result = await res.json();
+       //const result = await res.json();
        let result = {};
        try {
         result = await res.json();
@@ -728,7 +741,13 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
         console.error('Error:', error);
         alert("Error al procesar el formulario.");
       }
-  btn.disabled=false;btn.textContent='Enviar';
+ 
+  finally {
+    btn.disabled = false;
+    btn.textContent = 'Enviar';
+  }
+
+ 
 });
 </script>
 </body>
