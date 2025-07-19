@@ -652,6 +652,20 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
   const btn=document.getElementById('btnEnviar');
   btn.disabled=true;btn.textContent='Enviando...';
 
+  // Validacion si se selecciono ciudad de la lista y lat y lon tienen valor
+  if (!document.getElementById('lat').value || !document.getElementById('lon').value) {
+  alert("Debes seleccionar una ciudad de la lista para nacimiento.");
+  btn.disabled = false;
+  btn.textContent = 'Enviar';
+  return;
+}
+if (!document.getElementById('lat_resi').value || !document.getElementById('lon_resi').value) {
+  alert("Debes seleccionar una ciudad de la lista para residencia.");
+  btn.disabled = false;
+  btn.textContent = 'Enviar';
+  return;
+}
+
 // ✅ Validar que haya al menos una opción por grupo
  if (!haySeleccion('grupoFormacion') || !haySeleccion('grupoTalentos') || !haySeleccion('grupoProfesiones')) {
     alert("Debes seleccionar al menos una opción en Formación, Talentos y Profesiones.");
@@ -729,7 +743,7 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
         setTimeout(() => {
           document.getElementById("mensaje-exito").style.display = "none";
          }, 5000);
-         form.reset();
+         this.reset();
          window.history.pushState("", document.title, window.location.pathname + window.location.search);
        } else {
          alert("Hubo un problema al guardar el formulario.");
