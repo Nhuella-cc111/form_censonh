@@ -728,6 +728,8 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
        let result = {};
        try {
         result = await res.json();
+        console.log("Respuesta Make:", result);
+
          } catch (e) {
          console.warn("No se pudo parsear la respuesta como JSON, continuo...");
         }
