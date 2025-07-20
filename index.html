@@ -721,6 +721,10 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
 
     const res=await fetch("https://hook.us2.make.com/6gjdmhgnwe3xb8xwabs2pflfv5qo40wj",{
       method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+
+    console.log("Status:", res.status);
+    console.log("Texto respuesta:", await res.text());
+
     
 
      if (res.ok) {
@@ -757,12 +761,13 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
           formData.append('file', fotoFile);
 
           // Primer request a Make
-          const fotoUrl ="";
+          
           const upload = await fetch(`https://amjskrqaoiuabscecmji.supabase.co/storage/v1/object/fotocc/${filename}`, {
             method: "POST",
             headers: {"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtanNrcnFhb2l1YWJzY2VjbWppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA5Nzg3NDksImV4cCI6MjA2NjU1NDc0OX0.t_9h25ehDGBWGz39YmMPdeeaFyWpQcoDR0POt5Y3CXQ"},
             body: formData
           });
+
 
           if (upload.ok) {
             const fotoUrl = `https://amjskrqaoiuabscecmji.supabase.co/storage/v1/object/public/fotocc/${filename}`;
