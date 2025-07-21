@@ -772,8 +772,9 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
           if (upload.ok) {
             const fotoUrl = `https://amjskrqaoiuabscecmji.supabase.co/storage/v1/object/public/fotocc/${filename}`;
 
-            // ✅ Segundo request a Make para actualizar URL en el registro
-            await fetch("https://hook.us2.make.com/6gjdmhgnwe3xb8xwabs2pflfv5qo40wj", {
+            // ✅ Segundo request → Make (Escenario 2: Actualiza foto)
+
+          await fetch("https://hook.us2.make.com/6xjwiyf7hmg35cxx3vsumml7tcldyo15", {
               method: "POST",
               headers: {"Content-Type": "application/json"},
               body: JSON.stringify({ id: result.id, fotoUrl })
