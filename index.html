@@ -764,7 +764,11 @@ document.getElementById('formNH').addEventListener('submit',async function(e){
           await fetch("https://hook.us2.make.com/6xjwiyf7hmg35cxx3vsumml7tcldyo15", {
               method: "POST",
               headers: {"Content-Type": "application/json"},
-              body: JSON.stringify({ id: result.id, fotoUrl })
+              body: JSON.stringify({
+              id: result.id,
+              fotoUrl: fotoUrl,
+              form_origen: "nuevah" 
+               })
             });
           }
         }
